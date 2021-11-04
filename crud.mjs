@@ -28,13 +28,14 @@ app.get('/user/:id',(req,res)=>{
 
 
 app.post('/user',(req,res)=>{
-    if(!req.body.name || !req.body.email || !req.body.address){
+    if(!req.body.student_name || !req.body.father_name || !req.body.age || !req.body.roll_no){
         res.status(400).send('invalid code');        
     }else{
         users.push({
-            name:req.body.name,
-            email:req.body.email,
-            address:req.body.address
+            student_name:req.body.student_name,
+            father_name:req.body.father_name,
+            age:req.body.age,
+            roll_no:req.body.roll_no,            
         })
         res.send("user Created ");        
     }
