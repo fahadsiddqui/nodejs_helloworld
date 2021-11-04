@@ -1,7 +1,9 @@
 import express from 'express';
 import morgan  from 'morgan';
+var cors = require('cors')
 
 const app =express();
+app.use(cors());
 const port = process.env.PORT || 3000
 let users=[];
 
