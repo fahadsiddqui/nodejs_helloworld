@@ -45,14 +45,17 @@ app.post('/user',(req,res)=>{
 
 app.put('/user/:id',(req,res)=>{
     if(users[req.params.id]){
-        if(req.body.name){
-            users[req.params.id].name = req.body.name
+        if(req.body.student_name){
+            users[req.params.id].student_name = req.body.student_name
         }
-        if(req.body.name){
-            users[req.params.id].email = req.body.email
+        if(req.body.father_name){
+            users[req.params.id].father_name = req.body.father_name
         }
-        if(req.body.name){
-            users[req.params.id].address = req.body.address
+        if(req.body.father_name){
+            users[req.params.id].age = req.body.father_name
+        }
+        if(req.body.roll_no){
+            users[req.params.id].roll_no = req.body.roll_no
         }
         res.send(users[req.params.id])        
     }else{
