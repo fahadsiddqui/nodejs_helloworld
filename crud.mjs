@@ -51,8 +51,8 @@ app.put('/user/:id',(req,res)=>{
         if(req.body.father_name){
             users[req.params.id].father_name = req.body.father_name
         }
-        if(req.body.father_name){
-            users[req.params.id].age = req.body.father_name
+        if(req.body.age){
+            users[req.params.id].age = req.body.age
         }
         if(req.body.roll_no){
             users[req.params.id].roll_no = req.body.roll_no
