@@ -40,6 +40,7 @@ app.post('/user',(req,res)=>{
             age:req.body.age,
             roll_no:req.body.roll_no,
         })
+        res.send("user created");
     }
 })
 
