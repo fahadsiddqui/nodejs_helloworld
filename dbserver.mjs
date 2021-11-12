@@ -3,7 +3,12 @@ import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb+srv://dbfahad:bharmal786@chatbotalcluster.mpfvc.mongodb.net/mychatapp?retryWrites=true&w=majority');
+
+//mongoose.connect('mongodb+srv://dbfahad:bharmal786@chatbotalcluster.mpfvc.mongodb.net/mychatapp?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://dbfahad:bharmal786@chatbotalcluster.mpfvc.mongodb.net/mychatapp?retryWrites=true&w=majority', function(){
+    console.log('mongodb connected')
+})
+
 const User =mongoose.model('User',{
     student_name:String,
     father_name:String,
@@ -22,7 +27,6 @@ app.use((req,res,next)=>{
 })
 
 app.get('/users', (req, res) => {
-
     User.find({}, (err, users) => {
       if (!err) {
         res.send(users)
@@ -48,8 +52,9 @@ app.get('/users', (req, res) => {
         res.send("users created");
       });
     }
+  })
 
-})
+
 
 app.listen(port,()=>{
     console.log('server is running');
