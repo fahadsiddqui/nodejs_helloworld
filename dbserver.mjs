@@ -8,11 +8,14 @@ mongoose.connect('mongodb+srv://dbfahad:bharmal786@chatbotalcluster.mpfvc.mongod
   console.log("db Connected");
 });
 
-const User = mongoose.model('users',{
+const User = mongoose.model('student',{
   student_name:String,
   father_name:String,
   age:String,
-  roll_no:String
+  dob:Date,
+  mobile:String,
+  email:String,
+  gender:String
 });
 
 const app = express();
@@ -47,14 +50,18 @@ app.get('/user/:id',(req,res)=>{
 })
 
 app.post('/user',(req,res)=>{
-if(!req.body.student_name ||!req.body.father_name ||!req.body.age ||!req.body.roll_no){
+if(!req.body.student_name ||!req.body.father_name ||!req.body.age 
+  ||!req.body.dob ||!req.body.mobile ||!req.body.email ||!req.body.gender){
   res.status(400).send("invalid record");
 }else{
   const newUser = new User({
     student_name:req.body.student_name,
     father_name:req.body.father_name,
     age:req.body.age,
-    roll_no:req.body.roll_no
+    dob:req.body.dob,
+    mobile:req.body.mobile,
+    email:req.body.email,
+    gender:req.body.gender,
   });
   newUser.save().then(()=>{
     console.log("user created");
@@ -74,8 +81,17 @@ if(req.body.father_name){
 if(req.body.age){
   updateUser.age = req.body.age;
 }
-if(req.body.roll_no){
-  updateUser.roll_no = req.body.roll_no;
+if(req.body.dob){
+  updateUser.dob = req.body.dob;
+}
+if(req.body.mobile){
+  updateUser.mobile = req.body.mobile;
+}
+if(req.body.email){
+  updateUser.email = req.body.email;
+}
+if(req.body.gender){
+  updateUser.gender = req.body.gender;
 }
 User.findByIdAndUpdate(req.params.id,updateUser,{new:true},
   (err,data)=>{
