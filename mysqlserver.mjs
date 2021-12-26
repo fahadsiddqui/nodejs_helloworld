@@ -5,10 +5,10 @@ import mysql from 'mysql';
 
 
 var connection = mysql.createConnection({
-    host     : '173.214.173.246',
-    user     : 'safety53_bsuite',
-    password : 'Bharmal786#',
-    database : 'safety53_db_hacson_2122'
+    host     : '',
+    user     : '',
+    password : '',
+    database : ''
   });
 
 //   connection.connect(function(err) {
