@@ -25,6 +25,11 @@ const Employee = mongoose.model('employee',{
   roll_no:String,
 });
 
+const Usage = mongoose.model('Usage', {
+  skillName: String,
+  clientName: String,
+  createdOn: { type: Date, default: Date.now },
+});
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -46,6 +51,18 @@ app.get('/users',(req,res)=>{
     }
   })
 })
+
+// Usage
+app.get('/usages',(req,res)=>{
+  Usage.find({},(err,usages)=>{
+    if(!err){
+      res.send(usages);
+    }else{
+      res.status(500).send("error");
+    }
+  })
+})
+
 
 app.get('/user/:id',(req,res)=>{
   User.findOne({_id:req.params.id},(err,user)=>{
