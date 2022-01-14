@@ -31,6 +31,14 @@ const Usage = mongoose.model('Usage', {
   createdOn: { type: Date, default: Date.now },
 });
 
+const Order = mongoose.model('Order', {
+  userName: String,
+  email: String,
+  order: String,
+  createdOn: { type: Date, default: Date.now },
+});
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(cors());
@@ -57,6 +65,17 @@ app.get('/usages',(req,res)=>{
   Usage.find({},(err,usages)=>{
     if(!err){
       res.send(usages);
+    }else{
+      res.status(500).send("error");
+    }
+  })
+})
+
+// Order
+app.get('/orders',(req,res)=>{
+  Order.find({},(err,orders)=>{
+    if(!err){
+      res.send(orders);
     }else{
       res.status(500).send("error");
     }
