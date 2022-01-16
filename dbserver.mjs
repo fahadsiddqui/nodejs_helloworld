@@ -38,6 +38,16 @@ const Order = mongoose.model('Order', {
   createdOn: { type: Date, default: Date.now },
 });
 
+const Cart = mongoose.model('Cart', {
+  items: [{
+    dishName: String,
+    quantity: Number
+  }],
+  email: String,
+  customerName: String,
+  createdOn: { type: Date, default: Date.now },
+});
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -76,6 +86,17 @@ app.get('/orders',(req,res)=>{
   Order.find({},(err,orders)=>{
     if(!err){
       res.send(orders);
+    }else{
+      res.status(500).send("error");
+    }
+  })
+})
+
+// Order
+app.get('/carts',(req,res)=>{
+  Cart.find({},(err,carts)=>{
+    if(!err){
+      res.send(carts);
     }else{
       res.status(500).send("error");
     }
